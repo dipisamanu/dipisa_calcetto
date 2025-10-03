@@ -1,5 +1,17 @@
 <?php
-    $title = 'Crea campo';
+require "CampoDaCalcio.php";
+require_once "CampoDaCalcio.php";
+
+$title = 'Crea campo';
+
+if (!empty($_POST)) {
+    $nome = $_POST['nome'];
+    $spettatori = $_POST['spettatori'];
+    $url = $_POST['url'];
+    var_dump($nome, $spettatori, $url);
+
+    $nuovoCampo = new CampoDaCalcio($nome, $spettatori, $url);
+}
 ?>
 
 <!doctype html>
@@ -11,34 +23,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
     <style>
-        .label{
+        .label {
             display: inline-block;
             width: 100px;
         }
-        .form-row{
+
+        .form-row {
             margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
-    <h1><?= $title ?></h1>
+<h1><?= $title ?></h1>
 
-    <form>
-        <div class="form-row">
-            <span class="label">Nome: </span>
-            <input type="text" name="nome">
-        </div>
-        <div class="form-row">
-            <span class="label">Spettatori: </span>
-            <input type="number" name="spettatori">
-        </div>
-        <div class="form-row">
-            <span class="label">Url: </span>
-            <input type="url" name="url">
-        </div>
-        <div class="form-row">
-            <input type="submit" value="Crea">
-        </div>
-    </form>
+<form action="" method="post">
+    <div class="form-row">
+        <span class="label">Nome: </span>
+        <input type="text" name="nome">
+    </div>
+    <div class="form-row">
+        <span class="label">Spettatori: </span>
+        <input type="number" name="spettatori">
+    </div>
+    <div class="form-row">
+        <span class="label">Url: </span>
+        <input type="url" name="url">
+    </div>
+    <div class="form-row">
+        <input type="submit" value="Crea">
+    </div>
+</form>
 </body>
 </html>
