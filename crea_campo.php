@@ -12,12 +12,29 @@ if (!empty($_POST)) {
     $nuovoCampo = new CampoDaCalcio($nome, $spettatori, $url);
     //print($nuovoCampo); //stampa dell'oggetto con il metodo tostring già comodo
 
+    //per capire se la connessione al db è riuscita
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=dipisa_calcetto", "root", "");
+        echo "La connessione è riuscita";
     } catch (PDOException $e){
         die("Errore di connessione ".$e->getMessage());
     }
 
+    try {
+        $sql = 'INSERT INTO campi(nome, spettatori, url) VALUES (:nome, :spettatori,:url)';
+        $stmt = $pdo->prepare($sql); //per preparare la query, il tipo di ritorno
+        //statement è la query pronta per essere eseguita
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':spettatori', $spettatori);
+        $stmt->bindParam(':url', $url);
+        $stmt->execute();
+        $lastId = $pdo->lastInsertId();
+    } catch (PDOException $e){
+        if($e->getCode() == 23000){
+            die("Errore nell'inserimento, record già inserito");
+
+        }
+    }
 
 
 
