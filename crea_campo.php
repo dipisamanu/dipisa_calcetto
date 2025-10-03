@@ -10,8 +10,18 @@ if (!empty($_POST)) {
     //var_dump($nome, $spettatori, $url);
 
     $nuovoCampo = new CampoDaCalcio($nome, $spettatori, $url);
+    //print($nuovoCampo); //stampa dell'oggetto con il metodo tostring già comodo
 
-    print($nuovoCampo); //stampa dell'oggetto con il metodo tostring già comodo
+    try {
+        $pdo = new PDO("mysql:host=localhost;dbname=dipisa_calcetto", "root", "");
+    } catch (PDOException $e){
+        die("Errore di connessione ".$e->getMessage());
+    }
+
+
+
+
+
 }
 ?>
 

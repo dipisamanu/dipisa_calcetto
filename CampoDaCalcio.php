@@ -24,6 +24,6 @@ class CampoDaCalcio
     }
 
     public function __toString(){
-        return "CampoDaCalcio Nome: {$this->nome}, Spettatori: {$this->spettatori}, Url: {$this->url}";
+        return "Campo Da Calcio con Nome: {$this->nome}, Spettatori: {$this->spettatori}, Url: {$this->url}";
     }
 }
