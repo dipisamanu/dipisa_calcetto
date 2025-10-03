@@ -1,5 +1,4 @@
 <?php
-require "CampoDaCalcio.php";
 require_once "CampoDaCalcio.php";
 
 $title = 'Crea campo';
@@ -8,9 +7,11 @@ if (!empty($_POST)) {
     $nome = $_POST['nome'];
     $spettatori = $_POST['spettatori'];
     $url = $_POST['url'];
-    var_dump($nome, $spettatori, $url);
+    //var_dump($nome, $spettatori, $url);
 
     $nuovoCampo = new CampoDaCalcio($nome, $spettatori, $url);
+
+    print($nuovoCampo); //stampa dell'oggetto con il metodo tostring già comodo
 }
 ?>
 
