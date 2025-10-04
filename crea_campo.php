@@ -5,7 +5,7 @@ $title = 'Crea campo';
 
 if (!empty($_POST)) {
     $nome = $_POST['nome'];
-    $spettatori = $_POST['spettatori'];
+    $spettatori = intval($_POST['spettatori']);
     $url = $_POST['url'];
     //var_dump($nome, $spettatori, $url);
 
@@ -16,8 +16,8 @@ if (!empty($_POST)) {
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=dipisa_calcetto", "root", "");
         echo "La connessione è riuscita";
-    } catch (PDOException $e){
-        die("Errore di connessione ".$e->getMessage());
+    } catch (PDOException $e) {
+        die("Errore di connessione " . $e->getMessage());
     }
 
     try {
@@ -29,16 +29,12 @@ if (!empty($_POST)) {
         $stmt->bindParam(':url', $url);
         $stmt->execute();
         $lastId = $pdo->lastInsertId();
-    } catch (PDOException $e){
-        if($e->getCode() == 23000){
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) {
             die("Errore nell'inserimento, record già inserito");
 
         }
     }
-
-
-
-
 }
 ?>
 
